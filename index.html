@@ -55,9 +55,11 @@ body[data-tone="cream"] .vignette{background:radial-gradient(125% 105% at 50% 42
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
 #fx{position:fixed;inset:0;z-index:92;pointer-events:none}
 #sweep{position:fixed;inset:-10% -30%;z-index:94;pointer-events:none;opacity:0;
-  background:linear-gradient(105deg,transparent 38%,rgba(255,224,168,.10) 46%,rgba(255,244,214,.32) 50%,rgba(255,224,168,.10) 54%,transparent 62%)}
-#sweep.go{animation:sweep 1.15s var(--ease)}
+  background:linear-gradient(105deg,transparent 34%,rgba(255,224,168,.22) 44%,rgba(255,248,224,.85) 50%,rgba(255,224,168,.22) 56%,transparent 66%)}
+#sweep.go{animation:sweep 1.05s var(--ease)}
 @keyframes sweep{0%{opacity:0;transform:translateX(-60%)}18%{opacity:1}100%{opacity:0;transform:translateX(60%)}}
+#curtain{position:fixed;inset:0;z-index:96;pointer-events:none;opacity:0;
+  background:linear-gradient(100deg,var(--coral-d),var(--amber) 45%,var(--gold-l))}
 
 /* ===== splash ===== */
 #splash{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;
@@ -77,8 +79,6 @@ body[data-tone="cream"] .vignette{background:radial-gradient(125% 105% at 50% 42
 .sp-title{font-size:clamp(42px,7.4vw,92px);font-weight:900;line-height:1.02;letter-spacing:-.03em;color:var(--cream);animation-delay:.4s}
 .sp-title em{font-weight:800;background:linear-gradient(95deg,#FFC24D,#FF8FB1 55%,#7CE8DC);-webkit-background-clip:text;background-clip:text;color:transparent}
 .sp-sub{margin-top:22px;font-size:clamp(15px,1.7vw,20px);color:var(--cream2);max-width:660px;line-height:1.65;animation-delay:.55s}
-.sp-team{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;animation-delay:.7s}
-.sp-team span{background:rgba(255,255,255,.06);border:1px solid rgba(255,217,138,.24);border-radius:999px;padding:9px 20px;font-size:14px;font-weight:700;color:var(--cream);backdrop-filter:blur(8px)}
 #playBtn{margin-top:42px;display:inline-flex;align-items:center;gap:14px;background:linear-gradient(135deg,var(--coral),var(--coral-d));color:#fff;font-size:18px;font-weight:800;
   padding:19px 44px;border-radius:999px;box-shadow:0 20px 50px -12px rgba(232,64,42,.75);transition:transform .3s var(--ease),box-shadow .3s;animation-delay:.85s;position:relative;cursor:pointer;border:none;font-family:var(--font)}
 #playBtn:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 28px 64px -12px rgba(232,64,42,.85)}
@@ -179,25 +179,18 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
 .cue b{width:20px;height:20px;border-right:3px solid var(--amber);border-bottom:3px solid var(--amber);transform:rotate(45deg);animation:chev 1.7s ease-in-out infinite}
 @keyframes chev{0%,100%{transform:rotate(45deg) translate(0,0);opacity:1}50%{transform:rotate(45deg) translate(7px,7px);opacity:.35}}
 
-/* team */
-#s2 .inner{justify-content:center}
-.team{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:44px}
-.mem{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:34px 22px;text-align:center;box-shadow:var(--shadow);transition:transform .4s var(--ease),box-shadow .4s;position:relative;overflow:hidden}
-.mem::before{content:"";position:absolute;inset:0 0 auto;height:6px;background:linear-gradient(90deg,var(--coral),var(--amber))}
-.mem:nth-child(2)::before{background:linear-gradient(90deg,var(--teal),var(--info))}
-.mem:nth-child(3)::before{background:linear-gradient(90deg,var(--rose),var(--violet))}
-.mem:nth-child(4)::before{background:linear-gradient(90deg,var(--violet),var(--teal))}
-.mem:hover{transform:translateY(-10px)}
-.av{width:92px;height:92px;border-radius:50%;margin:6px auto 20px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;color:#fff;box-shadow:0 14px 30px -8px rgba(36,28,21,.4)}
-.mem:nth-child(1) .av{background:linear-gradient(140deg,#FF5A3C,#F5A623)}
-.mem:nth-child(2) .av{background:linear-gradient(140deg,#0E9E8F,#3E8BFF)}
-.mem:nth-child(3) .av{background:linear-gradient(140deg,#FF7BAC,#7C5CFF)}
-.mem:nth-child(4) .av{background:linear-gradient(140deg,#7C5CFF,#0E9E8F)}
-.mem h3{font-size:19px;font-weight:800}
-.mem p{margin-top:9px;font-size:13.5px;color:var(--ink2);line-height:1.55}
-.flow{margin-top:40px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;font-weight:800;font-size:15px}
-.flow .s{background:#fff;border:1px solid var(--line);padding:11px 22px;border-radius:999px;box-shadow:0 8px 20px -8px rgba(36,28,21,.2)}
-.flow .a{color:var(--coral);font-weight:900;font-size:18px}
+/* opinion perspective tags + closing signature */
+.tag{display:inline-flex;align-items:center;gap:10px;margin-top:18px;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2)}
+.tag .dot{width:12px;height:12px;border-radius:50%;flex:none;box-shadow:0 4px 10px -2px rgba(36,28,21,.35)}
+.op::after{content:"";position:absolute;left:26px;right:26px;top:0;height:4px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,var(--coral),var(--amber))}
+.op:nth-child(2)::after{background:linear-gradient(90deg,var(--teal),var(--info))}
+.op:nth-child(3)::after{background:linear-gradient(90deg,var(--rose),var(--violet))}
+.op:nth-child(4)::after{background:linear-gradient(90deg,var(--violet),var(--teal))}
+.sig{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:34px;color:var(--coral)}
+.sig svg{width:26px;height:26px;filter:drop-shadow(0 6px 16px rgba(232,64,42,.6))}
+.sig-line{width:76px;height:2px;background:linear-gradient(90deg,transparent,var(--gold-l))}
+.sig-line.rev2{background:linear-gradient(90deg,var(--gold-l),transparent)}
+.sig-word{margin-top:14px;font-size:12.5px;font-weight:800;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-l)}
 
 /* split layout: content + collage zone */
 .split{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(26px,4vw,68px);align-items:center;height:100%}
@@ -274,14 +267,11 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
 .cl p{font-size:13.5px;line-height:1.55;color:rgba(246,239,227,.8)}
 
 /* opinions */
+#s10 .inner{justify-content:center}
 .ops{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
 .op{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:var(--shadow);position:relative}
 .op::before{content:"“";position:absolute;right:22px;top:6px;font-family:var(--serif);font-size:74px;font-weight:900;color:var(--paper2);line-height:1}
 .op p{font-size:15.5px;line-height:1.6;color:var(--ink);font-weight:500;position:relative}
-.who{display:flex;align-items:center;gap:13px;margin-top:18px}
-.mini{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:16px;flex:none}
-.who b{font-size:15px;font-weight:800;display:block}
-.who small{font-size:12.5px;color:var(--ink3)}
 
 /* challenge */
 .checks{margin-top:24px;display:flex;flex-direction:column;gap:13px}
@@ -311,12 +301,11 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
 
 /* ===== responsive ===== */
 @media (max-width:920px){
-  .team,.cons,.cls{grid-template-columns:1fr 1fr}
+  .cons,.cls{grid-template-columns:1fr 1fr}
   .split,.split.rev-side{display:flex;flex-direction:column;gap:18px;height:auto;min-height:0;overflow:visible;justify-content:flex-start;align-items:stretch}
   .inner{padding-top:clamp(24px,5vh,40px);padding-bottom:90px;overflow-y:auto;justify-content:flex-start}
   .grid2,.ops{grid-template-columns:1fr}
   .vs{grid-template-columns:1fr;gap:14px}.vb{margin:-4px auto}
-  .mem{padding:22px 14px}.av{width:66px;height:66px;font-size:23px}
   .co{min-height:0}.cue{display:none}
   .ghost{font-size:40vw;top:auto;bottom:-2vh;right:-2vw}
   .collage{opacity:.9}
@@ -325,6 +314,8 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
   .split .collage-zone{position:relative;inset:auto;height:320px;flex:none;order:-1}
   .split .collage .pc{top:6%!important}
   .split .collage .pc:nth-child(2){top:26%!important}
+  #s12 .collage .pc:nth-child(2){left:74%!important;top:7%!important}
+  #s10 .inner{justify-content:flex-start}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
@@ -334,6 +325,7 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
 .still .rev,.still .rv-l,.still .rv-r,.still .rv-p,.still .sp,.still .logo,.still .kinetic .kw i,.still .pc{opacity:1!important;transform:none!important}
 .still #splash{display:none!important}
 .still #sweep{display:none!important}
+.still #curtain{display:none!important}
 </style>
 </head>
 <body data-tone="dark">
@@ -342,6 +334,7 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
 <div class="grain" aria-hidden="true"></div>
 <canvas id="fx" aria-hidden="true"></canvas>
 <div id="sweep" aria-hidden="true"></div>
+<div id="curtain" aria-hidden="true"></div>
 
 <!-- SPLASH -->
 <div id="splash">
@@ -350,7 +343,6 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
   <div class="sp-eye sp">Chuyên đề học đường · Kỹ năng giao tiếp</div>
   <h1 class="sp-title sp">Nói lời hay,<br><em>giữ tình bạn.</em></h1>
   <p class="sp-sub sp">Vấn đề sử dụng ngôn từ dung tục với bạn bè — thực trạng, hậu quả và những giải pháp khả thi mà mỗi học sinh có thể bắt đầu ngay hôm nay.</p>
-  <div class="sp-team sp"><span>Đặng Hồng Long</span><span>Trần Bảo Nam</span><span>Tuyết Trinh</span><span>Thanh Trà</span></div>
   <button id="playBtn" class="sp"><span class="ring"></span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>Bắt đầu trình chiếu</button>
   <div class="sp-hint sp"><span>Chạm / click / phím <kbd>↑</kbd><kbd>↓</kbd> để chuyển cảnh</span><span><kbd>M</kbd> nhạc · <kbd>V</kbd> giọng đọc · <kbd>F</kbd> toàn màn hình</span></div>
 </div>
@@ -375,26 +367,29 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
     <div class="cue rev" style="--i:4"><span>Lướt để bắt đầu</span><b></b></div>
   </section>
 
-  <!-- 2 TEAM -->
+  <!-- 2 OPENING -->
   <section class="slide lt" id="s2" data-tone="cream">
     <div class="bg" style="background-image:url('assets/r_classroom.webp')"></div>
     <div class="scrim"></div>
-    <div class="collage" aria-hidden="true">
-      <figure class="pc" style="left:78%;top:8%;width:18%;--rot:8deg;--fx:140px;--fy:-60px;--i:1;--d:1.4;--fd:8s"><div class="pc-f"><img src="assets/r_library.webp" alt="" style="--ar:4/5"></div></figure>
-    </div>
     <span class="ghost" aria-hidden="true">02</span>
-    <div class="inner">
-      <div class="eye rev" style="--i:0">Giới thiệu</div>
-      <h2 class="st rev" style="--i:1">Nhóm thực hiện</h2>
-      <p class="sub rev" style="--i:2">Bốn thành viên — một mong muốn: để lời nói trong lớp học và nhóm bạn trở nên tử tế hơn mỗi ngày.</p>
-      <div class="team">
-        <div class="mem rv-p" style="--i:3"><div class="av">HL</div><h3>Đặng Hồng Long</h3><p>Nhóm trưởng · Nội dung &amp; giải pháp</p></div>
-        <div class="mem rv-p" style="--i:4"><div class="av">BN</div><h3>Trần Bảo Nam</h3><p>Thực trạng &amp; quan sát học đường</p></div>
-        <div class="mem rv-p" style="--i:5"><div class="av">TT</div><h3>Tuyết Trinh</h3><p>Thiết kế &amp; hình ảnh minh họa</p></div>
-        <div class="mem rv-p" style="--i:6"><div class="av">TT</div><h3>Thanh Trà</h3><p>Thuyết trình &amp; truyền thông</p></div>
+    <div class="inner"><div class="split">
+      <div>
+        <div class="eye rev" style="--i:0">Lời mở đầu</div>
+        <h2 class="st rev" style="--i:1">Vì sao chúng tớ <em>chọn đề tài này?</em></h2>
+        <p class="sub rev" style="--i:2">Vì quanh chúng tớ, những câu “nói đùa” đang làm người khác đau — và thường không ai nhận ra. Nhóm chọn cách tiếp cận ba bước:</p>
+        <div class="plist">
+          <div class="pt rv-l" style="--i:3"><span class="n" style="background:var(--coral)">1</span><p><b>Lắng nghe trước</b> — đặt cảm xúc của người nghe lên trước khi phán xét đúng sai.</p></div>
+          <div class="pt rv-l" style="--i:4"><span class="n" style="background:var(--amber)">2</span><p><b>Nhìn thẳng vấn đề</b> — gọi đúng tên thói quen xấu, không né tránh, không đổ lỗi.</p></div>
+          <div class="pt rv-l" style="--i:5"><span class="n" style="background:var(--teal)">3</span><p><b>Làm được ngay</b> — chỉ đề xuất việc mà học sinh có thể bắt đầu từ hôm nay.</p></div>
+        </div>
       </div>
-      <div class="flow rev" style="--i:7"><span class="s">Lắng nghe</span><span class="a">→</span><span class="s">Nhìn thẳng vấn đề</span><span class="a">→</span><span class="s">Đề xuất việc làm được ngay</span></div>
-    </div>
+      <div class="collage-zone" style="position:relative">
+        <div class="collage" aria-hidden="true" style="position:absolute;inset:0">
+          <figure class="pc tape" style="left:6%;top:4%;width:62%;--rot:-5deg;--fx:150px;--fy:-70px;--i:1;--d:1.3;--fd:8s"><div class="pc-f"><img src="assets/r_library.webp" alt="" style="--ar:4/5"></div><span class="cap">bắt đầu từ lắng nghe</span></figure>
+          <figure class="pc" style="left:52%;top:52%;width:44%;--rot:7deg;--fx:160px;--fy:90px;--i:2;--d:1.9;--fd:10s"><div class="pc-f"><img src="assets/r_talk.webp" alt="" style="--ar:4/5"></div><span class="cap">nói điều tử tế</span></figure>
+        </div>
+      </div>
+    </div></div>
   </section>
 
   <!-- 3 REALITY -->
@@ -563,10 +558,10 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
       <div class="eye rev" style="--i:0">Ý kiến sơ bộ của nhóm</div>
       <h2 class="st rev" style="--i:1">Chúng mình <em>tin rằng…</em></h2>
       <div class="ops">
-        <div class="op rv-p" style="--i:2"><p>Không thể cấm ngay lập tức, nhưng có thể thay dần từng thói quen — bắt đầu từ chính lời nói của mình.</p><div class="who"><span class="mini" style="background:linear-gradient(135deg,#FF5A3C,#F5A623)">HL</span><div><b>Đặng Hồng Long</b><small>Góc nhìn giải pháp</small></div></div></div>
-        <div class="op rv-p" style="--i:3"><p>Điều đáng lo không phải một câu chửi, mà là việc cả nhóm coi đó là bình thường và không ai lên tiếng.</p><div class="who"><span class="mini" style="background:linear-gradient(135deg,#0E9E8F,#3E8BFF)">BN</span><div><b>Trần Bảo Nam</b><small>Góc nhìn thực trạng</small></div></div></div>
-        <div class="op rv-p" style="--i:4"><p>Hình ảnh và lời nói đẹp lan tỏa điều tích cực nhanh hơn mọi lời cấm đoán — hãy làm điều hay trở nên đáng tự hào.</p><div class="who"><span class="mini" style="background:linear-gradient(135deg,#FF7BAC,#7C5CFF)">TT</span><div><b>Tuyết Trinh</b><small>Góc nhìn truyền thông</small></div></div></div>
-        <div class="op rv-p" style="--i:5"><p>Người bị tổn thương cần được lắng nghe riêng, không bị bắt “phải vui lên” — tôn trọng cảm xúc là bước chữa lành đầu tiên.</p><div class="who"><span class="mini" style="background:linear-gradient(135deg,#7C5CFF,#0E9E8F)">TT</span><div><b>Thanh Trà</b><small>Góc nhìn thấu cảm</small></div></div></div>
+        <div class="op rv-p" style="--i:2"><p>Không thể cấm ngay lập tức, nhưng có thể thay dần từng thói quen — bắt đầu từ chính lời nói của mình.</p><div class="tag"><span class="dot" style="background:linear-gradient(135deg,#FF5A3C,#F5A623)"></span>Góc nhìn · Giải pháp</div></div>
+        <div class="op rv-p" style="--i:3"><p>Điều đáng lo không phải một câu chửi, mà là việc cả nhóm coi đó là bình thường và không ai lên tiếng.</p><div class="tag"><span class="dot" style="background:linear-gradient(135deg,#0E9E8F,#3E8BFF)"></span>Góc nhìn · Thực trạng</div></div>
+        <div class="op rv-p" style="--i:4"><p>Hình ảnh và lời nói đẹp lan tỏa điều tích cực nhanh hơn mọi lời cấm đoán — hãy làm điều hay trở nên đáng tự hào.</p><div class="tag"><span class="dot" style="background:linear-gradient(135deg,#FF7BAC,#7C5CFF)"></span>Góc nhìn · Truyền thông</div></div>
+        <div class="op rv-p" style="--i:5"><p>Người bị tổn thương cần được lắng nghe riêng, không bị bắt “phải vui lên” — tôn trọng cảm xúc là bước chữa lành đầu tiên.</p><div class="tag"><span class="dot" style="background:linear-gradient(135deg,#7C5CFF,#0E9E8F)"></span>Góc nhìn · Thấu cảm</div></div>
       </div>
     </div>
   </section>
@@ -604,7 +599,7 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
     <div class="bg" style="background-image:url('assets/r_fountain.webp')"></div>
     <div class="scrim center"></div>
     <div class="collage" aria-hidden="true">
-      <figure class="pc dark tape" style="left:7%;top:14%;width:18%;--rot:-8deg;--fx:-150px;--fy:-70px;--i:1;--d:1.6;--fd:8s"><div class="pc-f"><img src="assets/r_cover.webp" alt="" style="--ar:4/5"></div></figure>
+      <figure class="pc dark tape" style="left:2%;top:4%;width:12%;--rot:-8deg;--fx:-150px;--fy:-70px;--i:1;--d:1.6;--fd:8s"><div class="pc-f"><img src="assets/r_cover.webp" alt="" style="--ar:4/5"></div></figure>
       <figure class="pc dark" style="left:78%;top:52%;width:17%;--rot:8deg;--fx:150px;--fy:80px;--i:2;--d:2;--fd:10s"><div class="pc-f"><img src="assets/r_friends4.webp" alt="" style="--ar:4/5"></div></figure>
     </div>
     <span class="ghost" aria-hidden="true">12</span>
@@ -612,7 +607,8 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
       <div class="eye lt rev" style="--i:0">Thông điệp gửi lại</div>
       <p class="bq rev" style="--i:1">“Lời nói không mất tiền mua —<br><em>lựa lời mà nói cho vừa lòng nhau.</em>”</p>
       <p class="th rev" style="--i:2">Cảm ơn thầy cô và các bạn đã lắng nghe.<br>Mỗi lời nói tử tế hôm nay là một tình bạn được giữ lại ngày mai.</p>
-      <div class="chips rev" style="--i:3"><span>Đặng Hồng Long</span><span>Trần Bảo Nam</span><span>Tuyết Trinh</span><span>Thanh Trà</span></div>
+      <div class="sig rev" style="--i:3"><span class="sig-line"></span><svg viewBox="0 0 64 64" fill="none"><path d="M32 47s-15-9.2-15-19a8.5 8.5 0 0 1 15-5.5A8.5 8.5 0 0 1 47 28c0 9.8-15 19-15 19z" fill="currentColor"/></svg><span class="sig-line rev2"></span></div>
+      <div class="sig-word rev" style="--i:4">Nói lời hay · Giữ tình bạn</div>
     </div>
   </section>
 
@@ -634,7 +630,7 @@ function sweep(){if(RM)return;sweepEl.classList.remove('go');void sweepEl.offset
 
 const NARR=[
 "Xin chào thầy cô và các bạn. Hôm nay, nhóm chúng mình gồm Đặng Hồng Long, Trần Bảo Nam, Tuyết Trinh và Thanh Trà xin trình bày chuyên đề: Nói lời hay, giữ tình bạn — về vấn đề sử dụng ngôn từ dung tục với bạn bè, và những giải pháp khả thi cho học sinh chúng ta.",
-"Trước hết, xin giới thiệu nhóm thực hiện. Bốn thành viên chúng mình đến với đề tài này bằng một mong muốn chung: để lời nói trong lớp học và trong những nhóm bạn trở nên tử tế hơn mỗi ngày. Cách tiếp cận của nhóm là lắng nghe, nhìn thẳng vào vấn đề, và đề xuất những việc có thể làm được ngay.",
+"Trước hết, vì sao chúng tớ chọn đề tài này? Vì quanh chúng tớ, những câu nói đùa đang làm người khác đau — và thường không ai nhận ra. Cách tiếp cận của nhóm gồm ba bước: lắng nghe trước, nhìn thẳng vào vấn đề, và chỉ đề xuất những việc có thể làm được ngay hôm nay.",
 "Bắt đầu từ thực trạng. Trong nhiều nhóm bạn học sinh, chửi thề và biệt danh xúc phạm đang trở thành cửa miệng. Câu nói vui thôi mà thường được dùng để che giấu những tổn thương có thật. Người nghe có thể cười gượng, nhưng tổn thương tích tụ dần theo từng ngày. Và khi lặp lại đủ lâu, sự xúc phạm bị bình thường hóa — cả nhóm coi đó là điều hiển nhiên.",
 "Vậy vì sao ngôn từ dung tục lan rộng? Thứ nhất, sự nhiễm độc từ mạng xã hội: video, livestream và bình luận độc hại xuất hiện dày đặc. Thứ hai, áp lực đồng trang lứa: sợ bị coi là nhạt, nên nói theo cả nhóm. Thứ ba, thói quen vô thức: nói mà không nghĩ. Và thứ tư, thiếu kỹ năng diễn tả cảm xúc: khi giận dữ, lời nói dễ trở thành công cụ làm đau người khác.",
 "Một câu nói có thể để lại bốn vết thương. Với người nghe: tổn thương tinh thần, tự ti, thu mình, thậm chí sợ đến lớp. Với tập thể: đó là mầm mống của bắt nạt học đường, từ lời nói đến cô lập. Với tình bạn: niềm tin rạn nứt, nhóm bạn tan rã. Và với chính người nói: hình ảnh bản thân bị ảnh hưởng trong mắt thầy cô, bạn bè và cả tương lai.",
@@ -642,7 +638,7 @@ const NARR=[
 "Giải pháp đầu tiên bắt đầu từ chính mỗi người, với ba bước. Bước một: dừng ba giây trước khi nói, để kịp tự hỏi câu này có làm bạn đau không. Bước hai: đổi từ — nói cảm xúc thay vì chửi, ví dụ mình đang rất bực. Bước ba: xin lỗi chân thành khi lỡ lời, sửa sai ngay, không ngụy biện. Một lời xin lỗi đúng lúc có thể cứu được cả tình bạn.",
 "Giải pháp thứ hai là cùng nhau giữ nhóm bạn văn minh. Hãy góp ý riêng tư, không bêu riếu bạn trước đám đông. Không hùa theo — vì im lặng cười theo cũng là tiếp tay. Cùng đặt luật nhóm bạn: không chửi thề, không biệt danh xúc phạm. Và đừng quên khen ngợi cách nói văn minh của nhau — điều được khen sẽ được lặp lại.",
 "Ở quy mô lớp học và nhà trường, nhóm đề xuất bốn việc. Một: cả lớp cùng ký cam kết lớp học không ngôn từ dung tục. Hai: sinh hoạt chuyên đề về giao tiếp văn minh qua đóng vai và tình huống thật. Ba: hộp thư điều muốn nói — kênh ẩn danh để tổn thương được lắng nghe. Bốn: khi bị xúc phạm hoặc bắt nạt, hãy báo thầy cô chủ nhiệm, tổng phụ trách — không ai phải chịu đựng một mình.",
-"Đây là những ý kiến sơ bộ của nhóm. Hồng Long tin rằng không thể cấm ngay lập tức, nhưng có thể thay dần từng thói quen. Bảo Nam cho rằng điều đáng lo là cả nhóm coi xúc phạm là bình thường. Tuyết Trinh tin điều tích cực lan tỏa nhanh hơn cấm đoán. Còn Thanh Trà nhấn mạnh: người bị tổn thương cần được lắng nghe riêng, không bị bắt phải vui lên.",
+"Đây là những ý kiến sơ bộ của nhóm, nhìn từ bốn góc nhìn. Góc nhìn giải pháp: không thể cấm ngay lập tức, nhưng có thể thay dần từng thói quen. Góc nhìn thực trạng: điều đáng lo là cả nhóm coi xúc phạm là bình thường. Góc nhìn truyền thông: điều tích cực lan tỏa nhanh hơn cấm đoán. Và góc nhìn thấu cảm: người bị tổn thương cần được lắng nghe riêng, không bị bắt phải vui lên.",
 "Để biến lời nói thành hành động, nhóm mời cả lớp tham gia thử thách bảy ngày Nói lời hay. Ngày một đến hai: nhận diện những từ mình hay dùng. Ngày ba đến bốn: dừng ba giây và thay từ. Ngày năm đến sáu: góp ý riêng cho một người bạn và đặt luật nhóm. Ngày bảy: cùng tổng kết và khen nhau. Các bạn có thể tích vào từng bước ngay trên màn hình này.",
 "Lời nói không mất tiền mua — lựa lời mà nói cho vừa lòng nhau. Cảm ơn thầy cô và các bạn đã lắng nghe. Mỗi lời nói tử tế hôm nay là một tình bạn được giữ lại ngày mai. Nhóm chúng mình xin kết thúc phần trình bày tại đây."
 ];
@@ -755,7 +751,38 @@ function scheduleAuto(ms){clearTimeout(autoTimer);if(autoOn&&started&&cur<N-1)au
 /* videos: play active, pause others */
 function setVideos(){slides.forEach((s,k)=>{s.querySelectorAll('video').forEach(v=>{if(k===cur){v.play().catch(()=>{});}else{v.pause();}});});}
 
-/* transitions: camera push + collage assemble */
+/* transitions: six bold cinematic effects + leading color curtain */
+const curtainEl=document.getElementById('curtain');
+const TE='cubic-bezier(.22,.85,.25,1)';
+function runFx(old,nw,d,i,dur){
+  const s=d>=0?1:-1,kind=i%6,o={duration:dur,easing:TE,fill:'forwards'};
+  let ok,nk,ck=null;
+  if(kind===0){ /* horizontal push, color curtain leads */
+    ok=[{opacity:1,transform:'translateX(0) scale(1)',filter:'blur(0px)'},{opacity:0,transform:'translateX('+(-55*s)+'%) scale(.94)',filter:'blur(6px)'}];
+    nk=[{opacity:1,transform:'translateX('+(100*s)+'%) scale(1.02)'},{opacity:1,transform:'translateX(0) scale(1)'}];
+    ck=[{opacity:1,transform:'translateX('+(100*s)+'%)'},{opacity:1,transform:'translateX('+(-100*s)+'%)',offset:.72},{opacity:0,transform:'translateX('+(-100*s)+'%)'}];
+  }else if(kind===1){ /* iris reveal */
+    ok=[{opacity:1,transform:'scale(1)',filter:'blur(0px)'},{opacity:0,transform:'scale(1.16)',filter:'blur(9px)'}];
+    nk=[{opacity:1,clipPath:'circle(0% at 50% 55%)',transform:'scale(1.05)'},{opacity:1,clipPath:'circle(120% at 50% 55%)',transform:'scale(1)'}];
+  }else if(kind===2){ /* diagonal wipe */
+    ok=[{opacity:1,transform:'scale(1)',filter:'blur(0px)'},{opacity:0,transform:'scale(1.07)',filter:'blur(6px)'}];
+    const p=s>0?['0% 0, 0% 0, -20% 100%, 0% 100%','0% 0, 140% 0, 120% 100%, 0% 100%']:['100% 0, 100% 0, 120% 100%, 100% 100%','100% 0, -40% 0, -20% 100%, 100% 100%'];
+    nk=[{opacity:1,clipPath:'polygon('+p[0]+')'},{opacity:1,clipPath:'polygon('+p[1]+')'}];
+  }else if(kind===3){ /* center blinds open */
+    ok=[{opacity:1,transform:'scale(1)',filter:'blur(0px)'},{opacity:0,transform:'scale(.95)',filter:'blur(7px)'}];
+    nk=[{opacity:1,clipPath:'inset(0 50% 0 50%)',transform:'scale(1.04)'},{opacity:1,clipPath:'inset(0 0% 0 0%)',transform:'scale(1)'}];
+  }else if(kind===4){ /* 3D flip */
+    ok=[{opacity:1,transform:'perspective(1400px) rotateY(0deg) translateX(0)'},{opacity:0,transform:'perspective(1400px) rotateY('+(10*s)+'deg) translateX('+(-35*s)+'%)'}];
+    nk=[{opacity:0,transform:'perspective(1400px) rotateY('+(-16*s)+'deg) translateX('+(50*s)+'%) scale(.94)'},{opacity:1,transform:'perspective(1400px) rotateY(0deg) translateX(0) scale(1)'}];
+  }else{ /* vertical rise / stack */
+    ok=[{opacity:1,transform:'translateY(0) scale(1)',filter:'blur(0px)'},{opacity:0,transform:'translateY(0) scale(.94)',filter:'blur(6px)'}];
+    nk=[{opacity:1,transform:'translateY('+(102*s)+'%) scale(1.02)'},{opacity:1,transform:'translateY(0) scale(1)'}];
+    ck=[{opacity:1,transform:'translateY('+(100*s)+'%)'},{opacity:1,transform:'translateY('+(-100*s)+'%)',offset:.72},{opacity:0,transform:'translateY('+(-100*s)+'%)'}];
+  }
+  if(old)old.animate(ok,{duration:dur*.8,easing:TE,fill:'forwards'});
+  nw.animate(nk,o);
+  if(ck)curtainEl.animate(ck,o);
+}
 function go(i,d){
   if(busy||i===cur||i<0||i>=N)return;busy=true;
   const old=cur>=0?slides[cur]:null,nw=slides[i];
@@ -763,14 +790,14 @@ function go(i,d){
   setTone(nw);
   if(RM){if(old)old.classList.remove('active');cur=i;updateProgress();setVideos();busy=false;if(started)speak(i);return;}
   sweep();
-  const dur=1150;
-  if(old){old.classList.remove('active');old.classList.add('leaving');
-    old.animate([{opacity:1,transform:'scale(1)',filter:'blur(0)'},{opacity:0,transform:'scale(.955)',filter:'blur(8px)'}],{duration:dur*.62,easing:'cubic-bezier(.22,.85,.25,1)',fill:'forwards'});}
-  nw.animate([{opacity:0,transform:'scale(1.06)',filter:'blur(7px)'},{opacity:1,transform:'scale(1)',filter:'blur(0)'}],{duration:dur*.8,easing:'cubic-bezier(.22,.85,.25,1)',fill:'forwards'});
+  const dur=1250;
+  if(old){old.classList.remove('active');old.classList.add('leaving');}
+  runFx(old,nw,d,i,dur);
   swell();whoosh(d);
   setTimeout(()=>{
     if(old){old.classList.remove('leaving');old.getAnimations().forEach(a=>a.cancel());}
     nw.getAnimations().forEach(a=>{if(a.effect&&a.effect.target===nw)a.cancel();});
+    curtainEl.getAnimations().forEach(a=>a.cancel());
     busy=false;
   },dur+80);
   cur=i;updateProgress();setVideos();
