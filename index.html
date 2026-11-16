@@ -299,9 +299,55 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
 #progress{position:fixed;left:0;right:0;bottom:0;height:4px;z-index:120;background:rgba(255,255,255,.08)}
 #progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--coral),var(--amber),var(--gold-l));transition:width .7s var(--ease);box-shadow:0 0 14px rgba(245,166,35,.6)}
 
+/* cover keyword ticker */
+.ticker{position:absolute;left:0;right:0;bottom:6px;z-index:6;overflow:hidden;pointer-events:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.ticker-in{display:flex;width:max-content;gap:0;animation:tick 26s linear infinite}
+.ticker span{display:inline-flex;align-items:center;gap:26px;padding:0 13px;font-family:var(--serif);font-style:italic;font-weight:700;font-size:15px;letter-spacing:.06em;color:rgba(255,217,138,.6);white-space:nowrap}
+.ticker span::after{content:"✦";font-style:normal;font-size:11px;color:var(--coral)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* situations: bad-line vs better-line dialogue rows */
+#s13 .inner{justify-content:center;color:#FFFBF4}
+#s13 h2{color:#FFFBF4}
+.duos{margin-top:30px;display:flex;flex-direction:column;gap:16px;max-width:1060px}
+.duo{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch}
+.bub{border-radius:20px;padding:16px 20px;position:relative;box-shadow:0 16px 36px -18px rgba(0,0,0,.6)}
+.bub small{display:block;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-bottom:7px;opacity:.85}
+.bub p{font-size:15px;line-height:1.5;font-weight:600}
+.bub.bad{background:linear-gradient(150deg,rgba(232,64,42,.28),rgba(232,64,42,.14));border:1px solid rgba(255,122,92,.45);color:#FFD9CF}
+.bub.bad small{color:#FF9C86}
+.bub.good{background:linear-gradient(150deg,rgba(22,179,162,.26),rgba(22,179,162,.12));border:1px solid rgba(124,232,220,.4);color:#D8FBF5}
+.bub.good small{color:#7CE8DC}
+.duo .arr{align-self:center;font-size:22px;font-weight:900;color:var(--gold-l);text-shadow:0 4px 14px rgba(0,0,0,.5)}
+.duo .sit{grid-column:1/-1;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-l);margin-bottom:-6px}
+
+/* benefits filmstrip */
+#s14 .inner{justify-content:center}
+.bens{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:36px}
+.ben{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px 18px;position:relative;overflow:hidden;box-shadow:0 14px 34px -18px rgba(36,28,21,.3);transition:transform .4s var(--ease)}
+.ben:hover{transform:translateY(-8px)}
+.ben::before{content:"";position:absolute;inset:0 0 auto;height:5px;background:linear-gradient(90deg,var(--coral),var(--amber))}
+.ben:nth-child(2)::before{background:linear-gradient(90deg,var(--teal),var(--info))}
+.ben:nth-child(3)::before{background:linear-gradient(90deg,var(--rose),var(--violet))}
+.ben:nth-child(4)::before{background:linear-gradient(90deg,var(--violet),var(--teal))}
+.ben:nth-child(5)::before{background:linear-gradient(90deg,var(--amber),var(--coral))}
+.ben .bn{font-family:var(--serif);font-style:italic;font-weight:900;font-size:30px;color:var(--paper2);line-height:1}
+.ben .ic{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:12px 0 12px;background:linear-gradient(140deg,var(--coral),var(--amber))}
+.ben:nth-child(2) .ic{background:linear-gradient(140deg,var(--teal),var(--info))}
+.ben:nth-child(3) .ic{background:linear-gradient(140deg,var(--rose),var(--violet))}
+.ben:nth-child(4) .ic{background:linear-gradient(140deg,var(--violet),var(--teal))}
+.ben:nth-child(5) .ic{background:linear-gradient(140deg,var(--amber),var(--coral))}
+.ben h3{font-size:16.5px;font-weight:800;margin-bottom:7px}
+.ben p{font-size:13px;line-height:1.55;color:var(--ink2)}
+
 /* ===== responsive ===== */
 @media (max-width:920px){
   .cons,.cls{grid-template-columns:1fr 1fr}
+  .bens{grid-template-columns:1fr 1fr}
+  .duo{grid-template-columns:1fr;gap:8px}
+  .duo .arr{transform:rotate(90deg);justify-self:center;margin:-2px 0}
+  .ticker{display:none}
   .split,.split.rev-side{display:flex;flex-direction:column;gap:18px;height:auto;min-height:0;overflow:visible;justify-content:flex-start;align-items:stretch}
   .inner{padding-top:clamp(24px,5vh,40px);padding-bottom:90px;overflow-y:auto;justify-content:flex-start}
   .grid2,.ops{grid-template-columns:1fr}
@@ -316,6 +362,14 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
   .split .collage .pc:nth-child(2){top:26%!important}
   #s12 .collage .pc:nth-child(2){left:74%!important;top:7%!important}
   #s10 .inner{justify-content:flex-start}
+  #s13 .inner,#s14 .inner{justify-content:flex-start}
+  #s13 .collage{display:none}
+  .duos{margin-top:18px;gap:12px}
+  .bub{padding:12px 14px;border-radius:16px}
+  .bub p{font-size:13.5px}
+  .duo .sit{font-size:11px;margin-bottom:-2px}
+  .bens{margin-top:20px;gap:12px}
+  .ben{padding:16px 14px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
@@ -356,6 +410,7 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
     <div class="collage" aria-hidden="true">
       <figure class="pc dark tape" style="left:60%;top:13%;width:25%;--rot:6deg;--fx:160px;--fy:-80px;--i:1;--d:1.5;--fd:7s"><div class="pc-f"><img src="assets/r_friends4.webp" alt="" style="--ar:4/5"></div><span class="cap">tình bạn trong lành</span></figure>
       <figure class="pc dark" style="left:74%;top:46%;width:21%;--rot:-7deg;--fx:180px;--fy:90px;--i:2;--d:2;--fd:9s"><div class="pc-f"><img src="assets/r_hands.webp" alt="" style="--ar:1/1"></div><span class="cap">gắn kết</span></figure>
+      <figure class="pc dark tape" style="left:61%;top:73%;width:9%;--rot:-6deg;--fx:-120px;--fy:110px;--i:3;--d:1.7;--fd:11s"><div class="pc-f"><img src="assets/r_talk.webp" alt="" style="--ar:4/5"></div><span class="cap">lời tử tế</span></figure>
     </div>
     <span class="ghost" aria-hidden="true">01</span>
     <div class="inner">
@@ -365,6 +420,10 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
       <div class="chips rev" style="--i:3"><span>Đặng Hồng Long</span><span>Trần Bảo Nam</span><span>Tuyết Trinh</span><span>Thanh Trà</span></div>
     </div>
     <div class="cue rev" style="--i:4"><span>Lướt để bắt đầu</span><b></b></div>
+    <div class="ticker" aria-hidden="true"><div class="ticker-in">
+      <span>Nói lời hay</span><span>Giữ tình bạn</span><span>Tử tế mỗi ngày</span><span>Lắng nghe trước</span><span>Tôn trọng cảm xúc</span><span>Văn minh học đường</span>
+      <span>Nói lời hay</span><span>Giữ tình bạn</span><span>Tử tế mỗi ngày</span><span>Lắng nghe trước</span><span>Tôn trọng cảm xúc</span><span>Văn minh học đường</span>
+    </div></div>
   </section>
 
   <!-- 2 OPENING -->
@@ -480,11 +539,44 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
     </div>
   </section>
 
+  <!-- 7 SITUATIONS (practice) -->
+  <section class="slide dk" id="s13" data-tone="dark">
+    <div class="bg" style="background-image:url('assets/r_talk.webp')"></div>
+    <div class="scrim center"></div>
+    <div class="collage" aria-hidden="true">
+      <figure class="pc dark tape" style="left:84%;top:8%;width:13%;--rot:7deg;--fx:140px;--fy:-60px;--i:1;--d:1.6;--fd:9s"><div class="pc-f"><img src="assets/r_apology.webp" alt="" style="--ar:4/5"></div></figure>
+      <figure class="pc dark" style="left:1.5%;top:81%;width:10%;--rot:-7deg;--fx:-140px;--fy:80px;--i:2;--d:1.8;--fd:10s"><div class="pc-f"><img src="assets/r_hands.webp" alt="" style="--ar:1/1"></div></figure>
+    </div>
+    <span class="ghost" aria-hidden="true">07</span>
+    <div class="inner">
+      <div class="eye lt rev" style="--i:0">Thực hành</div>
+      <h2 class="st rev" style="--i:1">Ba tình huống — <em>đáp lời tử tế</em></h2>
+      <p class="sub lt rev" style="--i:2">Ví dụ minh họa: cùng một tình huống, đổi cách nói là đổi cả kết quả.</p>
+      <div class="duos">
+        <div class="duo rv-l" style="--i:3"><span class="sit">Khi bạn làm sai một việc nhỏ</span>
+          <div class="bub bad"><small>Câu dễ làm đau</small><p>“Sao mày ngu thế, có vậy cũng không làm được?”</p></div>
+          <span class="arr">➜</span>
+          <div class="bub good"><small>Câu nên nói thay</small><p>“Chỗ này khó thật, để mình chỉ lại cho bạn nhé.”</p></div>
+        </div>
+        <div class="duo rv-l" style="--i:4"><span class="sit">Khi định nhận xét ngoại hình bạn</span>
+          <div class="bub bad"><small>Câu dễ làm đau</small><p>“Béo như mày mà cũng đòi mặc váy?”</p></div>
+          <span class="arr">➜</span>
+          <div class="bub good"><small>Câu nên nói thay</small><p>“Bạn mặc gì cũng được, miễn bạn thấy thoải mái.”</p></div>
+        </div>
+        <div class="duo rv-l" style="--i:5"><span class="sit">Khi lỡ lời và bạn tỏ ra buồn</span>
+          <div class="bub bad"><small>Câu dễ làm đau</small><p>“Vui thôi mà, làm gì căng vậy?”</p></div>
+          <span class="arr">➜</span>
+          <div class="bub good"><small>Câu nên nói thay</small><p>“Mình xin lỗi, câu đó làm bạn buồn. Mình sẽ không nói lại.”</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 7 SELF -->
   <section class="slide dk" id="s7" data-tone="dark">
     <div class="bg" style="background-image:url('assets/r_apology.webp')"></div>
     <div class="scrim"></div>
-    <span class="ghost" aria-hidden="true">07</span>
+    <span class="ghost" aria-hidden="true">08</span>
     <div class="inner"><div class="split">
       <div>
         <div class="eye rev" style="--i:0">Giải pháp · Cá nhân</div>
@@ -508,7 +600,7 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
   <section class="slide lt" id="s8" data-tone="cream">
     <div class="bg" style="background-image:url('assets/r_friends4.webp')"></div>
     <div class="scrim"></div>
-    <span class="ghost" aria-hidden="true">08</span>
+    <span class="ghost" aria-hidden="true">09</span>
     <div class="inner"><div class="split rev-side">
       <div class="collage-zone" style="position:relative">
         <div class="collage" aria-hidden="true" style="position:absolute;inset:0">
@@ -536,7 +628,7 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
     <div class="collage" aria-hidden="true">
       <figure class="pc dark" style="left:81%;top:11%;width:15%;--rot:7deg;--fx:140px;--fy:-60px;--i:1;--d:1.6;--fd:9s"><div class="pc-f"><img src="assets/r_library.webp" alt="" style="--ar:4/5"></div></figure>
     </div>
-    <span class="ghost" aria-hidden="true">09</span>
+    <span class="ghost" aria-hidden="true">10</span>
     <div class="inner">
       <div class="eye lt rev" style="--i:0">Giải pháp · Lớp học &amp; nhà trường</div>
       <h2 class="st rev" style="--i:1">Lớp học <em>không ngôn từ dung tục</em></h2>
@@ -553,7 +645,7 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
   <section class="slide lt" id="s10" data-tone="cream">
     <div class="bg" style="background-image:url('assets/r_grad.webp')"></div>
     <div class="scrim"></div>
-    <span class="ghost" aria-hidden="true">10</span>
+    <span class="ghost" aria-hidden="true">11</span>
     <div class="inner">
       <div class="eye rev" style="--i:0">Ý kiến sơ bộ của nhóm</div>
       <h2 class="st rev" style="--i:1">Chúng mình <em>tin rằng…</em></h2>
@@ -570,7 +662,7 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
   <section class="slide dk" id="s11" data-tone="dark">
     <div class="bg" style="background-image:url('assets/r_grad.webp')"></div>
     <div class="scrim"></div>
-    <span class="ghost" aria-hidden="true">11</span>
+    <span class="ghost" aria-hidden="true">12</span>
     <div class="inner"><div class="split">
       <div>
         <div class="eye rev" style="--i:0">Hành động</div>
@@ -594,6 +686,28 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
     </div></div>
   </section>
 
+  <!-- 13 BENEFITS -->
+  <section class="slide lt" id="s14" data-tone="cream">
+    <div class="bg" style="background-image:url('assets/r_hands.webp')"></div>
+    <div class="scrim"></div>
+    <div class="collage" aria-hidden="true">
+      <figure class="pc tape" style="left:82%;top:6%;width:14%;--rot:7deg;--fx:140px;--fy:-60px;--i:1;--d:1.5;--fd:9s"><div class="pc-f"><img src="assets/r_grad.webp" alt="" style="--ar:4/5"></div></figure>
+    </div>
+    <span class="ghost" aria-hidden="true">13</span>
+    <div class="inner">
+      <div class="eye rev" style="--i:0">Vì sao đáng làm</div>
+      <h2 class="st rev" style="--i:1">Nói lời hay, <em>được gì?</em></h2>
+      <p class="sub rev" style="--i:2">Tử tế không phải là thiệt thòi — nó mang lại những điều rất thật cho chính mình và tập thể.</p>
+      <div class="bens">
+        <div class="ben rv-p" style="--i:3"><span class="bn">01</span><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 21s-8-4.9-8-10.4A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 3.6C20 16.1 12 21 12 21z"/></svg></div><h3>Tình bạn bền hơn</h3><p>Ít tổn thương, ít rạn nứt — nhóm bạn gắn bó lâu dài.</p></div>
+        <div class="ben rv-p" style="--i:4"><span class="bn">02</span><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Được tin cậy</h3><p>Người nói tử tế được bạn bè tin tưởng và tôn trọng.</p></div>
+        <div class="ben rv-p" style="--i:5"><span class="bn">03</span><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5M14.5 20c0-2.4 1.6-4 4-4s3.5 1.6 3.5 4"/></svg></div><h3>Lớp học dễ chịu</h3><p>Không khí an toàn để mỗi người dám lên tiếng, dám là mình.</p></div>
+        <div class="ben rv-p" style="--i:6"><span class="bn">04</span><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8.5 10.5h7"/></svg></div><h3>Tự tin giao tiếp</h3><p>Biết diễn tả cảm xúc đúng cách — kỹ năng theo mình suốt đời.</p></div>
+        <div class="ben rv-p" style="--i:7"><span class="bn">05</span><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 3l2.5 5.3 5.5.7-4 4 1 5.7-5-2.8-5 2.8 1-5.7-4-4 5.5-.7z"/></svg></div><h3>Hình ảnh đẹp</h3><p>Thầy cô, bạn bè và cả cơ hội tương lai nhìn mình tích cực hơn.</p></div>
+      </div>
+    </div>
+  </section>
+
   <!-- 12 CLOSING -->
   <section class="slide dk" id="s12" data-tone="dark">
     <div class="bg" style="background-image:url('assets/r_fountain.webp')"></div>
@@ -602,7 +716,7 @@ h2.st::after{content:"";display:block;width:92px;height:4px;border-radius:3px;ma
       <figure class="pc dark tape" style="left:2%;top:4%;width:12%;--rot:-8deg;--fx:-150px;--fy:-70px;--i:1;--d:1.6;--fd:8s"><div class="pc-f"><img src="assets/r_cover.webp" alt="" style="--ar:4/5"></div></figure>
       <figure class="pc dark" style="left:78%;top:52%;width:17%;--rot:8deg;--fx:150px;--fy:80px;--i:2;--d:2;--fd:10s"><div class="pc-f"><img src="assets/r_friends4.webp" alt="" style="--ar:4/5"></div></figure>
     </div>
-    <span class="ghost" aria-hidden="true">12</span>
+    <span class="ghost" aria-hidden="true">14</span>
     <div class="inner">
       <div class="eye lt rev" style="--i:0">Thông điệp gửi lại</div>
       <p class="bq rev" style="--i:1">“Lời nói không mất tiền mua —<br><em>lựa lời mà nói cho vừa lòng nhau.</em>”</p>
@@ -635,11 +749,13 @@ const NARR=[
 "Vậy vì sao ngôn từ dung tục lan rộng? Thứ nhất, sự nhiễm độc từ mạng xã hội: video, livestream và bình luận độc hại xuất hiện dày đặc. Thứ hai, áp lực đồng trang lứa: sợ bị coi là nhạt, nên nói theo cả nhóm. Thứ ba, thói quen vô thức: nói mà không nghĩ. Và thứ tư, thiếu kỹ năng diễn tả cảm xúc: khi giận dữ, lời nói dễ trở thành công cụ làm đau người khác.",
 "Một câu nói có thể để lại bốn vết thương. Với người nghe: tổn thương tinh thần, tự ti, thu mình, thậm chí sợ đến lớp. Với tập thể: đó là mầm mống của bắt nạt học đường, từ lời nói đến cô lập. Với tình bạn: niềm tin rạn nứt, nhóm bạn tan rã. Và với chính người nói: hình ảnh bản thân bị ảnh hưởng trong mắt thầy cô, bạn bè và cả tương lai.",
 "Điều quan trọng là nhận diện ranh giới giữa đùa vui và xúc phạm. Đùa vui lành mạnh là khi cả hai cùng cười, và dừng ngay khi bạn khó chịu. Ngôn từ xúc phạm là khi chỉ một phía cười, nhắm vào điểm yếu, gia đình, ngoại hình, và lặp lại dù đã được nhắc. Hãy nhớ quy tắc vàng: nếu phải nói vui thôi mà — nhiều khả năng nó không vui.",
+"Bây giờ, hãy cùng thực hành. Nhóm đưa ra ba tình huống rất quen thuộc. Tình huống một: thay vì chê bai sao mày ngu thế, hãy nói chỗ này khó thật, để mình chỉ lại cho bạn nhé. Tình huống hai: thay vì mỉa mai ngoại hình, hãy nói bạn mặc gì cũng được, miễn bạn thấy thoải mái. Tình huống ba: khi lỡ làm bạn buồn, đừng gạt đi bằng câu vui thôi mà — hãy xin lỗi thật lòng: mình xin lỗi, câu đó làm bạn buồn, mình sẽ không nói lại. Các bạn thấy đấy: cùng một tình huống, chỉ đổi cách nói là đổi cả kết quả.",
 "Giải pháp đầu tiên bắt đầu từ chính mỗi người, với ba bước. Bước một: dừng ba giây trước khi nói, để kịp tự hỏi câu này có làm bạn đau không. Bước hai: đổi từ — nói cảm xúc thay vì chửi, ví dụ mình đang rất bực. Bước ba: xin lỗi chân thành khi lỡ lời, sửa sai ngay, không ngụy biện. Một lời xin lỗi đúng lúc có thể cứu được cả tình bạn.",
 "Giải pháp thứ hai là cùng nhau giữ nhóm bạn văn minh. Hãy góp ý riêng tư, không bêu riếu bạn trước đám đông. Không hùa theo — vì im lặng cười theo cũng là tiếp tay. Cùng đặt luật nhóm bạn: không chửi thề, không biệt danh xúc phạm. Và đừng quên khen ngợi cách nói văn minh của nhau — điều được khen sẽ được lặp lại.",
 "Ở quy mô lớp học và nhà trường, nhóm đề xuất bốn việc. Một: cả lớp cùng ký cam kết lớp học không ngôn từ dung tục. Hai: sinh hoạt chuyên đề về giao tiếp văn minh qua đóng vai và tình huống thật. Ba: hộp thư điều muốn nói — kênh ẩn danh để tổn thương được lắng nghe. Bốn: khi bị xúc phạm hoặc bắt nạt, hãy báo thầy cô chủ nhiệm, tổng phụ trách — không ai phải chịu đựng một mình.",
 "Đây là những ý kiến sơ bộ của nhóm, nhìn từ bốn góc nhìn. Góc nhìn giải pháp: không thể cấm ngay lập tức, nhưng có thể thay dần từng thói quen. Góc nhìn thực trạng: điều đáng lo là cả nhóm coi xúc phạm là bình thường. Góc nhìn truyền thông: điều tích cực lan tỏa nhanh hơn cấm đoán. Và góc nhìn thấu cảm: người bị tổn thương cần được lắng nghe riêng, không bị bắt phải vui lên.",
 "Để biến lời nói thành hành động, nhóm mời cả lớp tham gia thử thách bảy ngày Nói lời hay. Ngày một đến hai: nhận diện những từ mình hay dùng. Ngày ba đến bốn: dừng ba giây và thay từ. Ngày năm đến sáu: góp ý riêng cho một người bạn và đặt luật nhóm. Ngày bảy: cùng tổng kết và khen nhau. Các bạn có thể tích vào từng bước ngay trên màn hình này.",
+"Vậy nói lời hay thì được gì? Nhóm xin chỉ ra năm điều. Một: tình bạn bền hơn, vì không còn những vết xước do lời nói. Hai: mình trở thành người đáng tin cậy — ai cũng muốn ở cạnh một người biết giữ lời. Ba: lớp học dễ chịu hơn, giờ ra chơi vui hơn, và không ai phải sợ đến lớp. Bốn: chính mình tự tin giao tiếp hơn, vì biết diễn tả cảm xúc thay vì buông lời làm đau. Và năm: hình ảnh của mình đẹp hơn trong mắt thầy cô, bạn bè và cả nhà tuyển dụng sau này. Tử tế không thiệt thòi — tử tế là một lợi thế.",
 "Lời nói không mất tiền mua — lựa lời mà nói cho vừa lòng nhau. Cảm ơn thầy cô và các bạn đã lắng nghe. Mỗi lời nói tử tế hôm nay là một tình bạn được giữ lại ngày mai. Nhóm chúng mình xin kết thúc phần trình bày tại đây."
 ];
 
@@ -716,27 +832,27 @@ function phrases(text){
   return out;
 }
 function prosody(t,idx){
-  let p=1.0,r=1.0,pause=150;
-  if(/[?？]\s*$/.test(t))p+=0.16;
-  if(/[…—:]\s*$/.test(t))pause=320;
-  else if(/[.!?]\s*$/.test(t))pause=360;
-  else if(/[,;]\s*$/.test(t))pause=200;
-  if(EMO.test(t)){p+=0.06;r-=0.07;}
+  let p=1.04,r=1.2,pause=90;
+  if(/[?？]\s*$/.test(t))p+=0.18;
+  if(/[…—:]\s*$/.test(t))pause=200;
+  else if(/[.!?]\s*$/.test(t))pause=230;
+  else if(/[,;]\s*$/.test(t))pause=120;
+  if(EMO.test(t)){p+=0.12;r-=0.12;}
   const words=t.split(/\s+/).length;
-  if(words<=5)r-=0.06;
-  p+=Math.sin(idx*1.7)*0.06;
-  r+=Math.cos(idx*1.3)*0.035;
-  return {p:Math.min(1.4,Math.max(0.72,p)),r:Math.min(1.16,Math.max(0.84,r)),pause};
+  if(words<=5){r-=0.1;p+=0.06;}
+  p+=Math.sin(idx*1.7)*0.13;
+  r+=Math.cos(idx*1.3)*0.08;
+  return {p:Math.min(1.5,Math.max(0.8,p)),r:Math.min(1.38,Math.max(0.98,r)),pause};
 }
 function speak(i){
   clearTimeout(autoTimer);
   if(!('speechSynthesis'in window)){scheduleAuto(7000);return;}
   speechSynthesis.cancel();
-  if(!voiceOn||!started){scheduleAuto(6000);return;}
+  if(!voiceOn||!started){scheduleAuto(5200);return;}
   const parts=phrases(NARR[i]);let k=0;speaking=true;
   const next=()=>{
     if(!speaking)return;
-    if(k>=parts.length){speaking=false;scheduleAuto(1800);return;}
+    if(k>=parts.length){speaking=false;scheduleAuto(1100);return;}
     const txt=parts[k].trim();const pr=prosody(txt,k);k++;
     const u=new SpeechSynthesisUtterance(txt);
     if(viVoice)u.voice=viVoice;u.lang='vi-VN';u.rate=pr.r;u.pitch=pr.p;u.volume=1;
